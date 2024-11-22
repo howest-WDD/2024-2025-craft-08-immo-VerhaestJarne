@@ -1,0 +1,30 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  - 79320a99-11e4-45db-92f3-067a367bf21e # Navigation
+handle: navigation
+maxAuthors: 1
+name: Navigation
+previewTargets:
+  -
+    __assoc__:
+      -
+        - label
+        - 'Primary entry page'
+      -
+        - urlFormat
+        - '{url}'
+      -
+        - refresh
+        - '1'
+propagationMethod: all
+siteSettings:
+  f6eaef1f-2f88-4856-8eee-c5ae9620f572: # Craft Template
+    enabledByDefault: true
+    hasUrls: true
+    template: navigation/_entry.twig
+    uriFormat: 'navigation/{slug}'
+structure:
+  maxLevels: null
+  uid: 8b228b13-61f0-418b-a861-684b6eeca983
+type: structure
