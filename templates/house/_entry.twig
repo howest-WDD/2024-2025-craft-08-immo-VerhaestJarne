@@ -52,28 +52,30 @@
 					class="d-flex flex-row gap-2">
 					<!-- todo: voeg de category toe zorg dat deze ook linkt naar het overzicht van deze specifieke category -->
 
+					{% set category = craft.entries.section('categories').relatedTo(entry).one() %}
 					<p>
-						<a class="c-detail__tag" href="#">Apartment</a>
+						<a class="c-detail__tag" href="{{ category.url }}">{{ category.title }}</a>
 					</p>
 					<!-- Zorg dat de kleur van de tag veranderd d.m.v .c-detail__tag--rent toe te passen wanneer iets “for rent” staat. -->
 					<p>
 						{% set status = entry.state %}
 
 						<a class="c-detail__tag {% if status == 'rent' %}
-																																												    c-detail__tag--rent
-																																												{% else %}
-																																												    c-detail__tag--sale
-																																												{% endif %}" href="#">For
+																																																																																																																																														    c-detail__tag--rent
+																																																																																																																																														{% else %}
+																																																																																																																																														    c-detail__tag--sale
+																																																																																																																																														{% endif %}" href="#">For
 							{{entry.state}}</a>
 					</p>
 				</div>
 
 				<div class="c-detail__location">
+					{% set city = craft.entries.section('locations').relatedTo(entry).one() %}
 					<img src="{{url('img/icons/location.svg')}}" alt="">
 					<p>
+
 						{{entry.location}},
-						<a class="u-underline" href="#">
-							hier komt de stad</a>
+						{{ city.title }}
 					</p>
 
 				</div>
@@ -148,7 +150,7 @@
 		<div class="row g-3 justify-content-center c-section__content">
 			<!-- todo: Zorg dat de cards hier enkel huizen toont die gerelateerd zijn aan de category van de detail pagina. -->
 			<!-- immo card -->
-			{% set houses = craft.entries.section('house').limit(3).all() %}
+			{% set houses = craft.entries.section('house').relatedTo(category).limit(3).all() %}
 				{% for house in houses %}
 				<!-- immo card -->
 					<div
@@ -161,10 +163,10 @@
 							src={{house.cover.one().url()}} alt="" class="c-immo-card__img">
 							<!-- todo: Zorg dat de kleur veranderd dmv c-immo-card__tag--rent toe te passen wanneer iets for rent staat  -->
 							<div class="c-immo-card__tag {% if status == 'rent' %}
-																																																						    c-immo-card__tag--rent
-																																																						{% else %}
-																																																						    c-immo-card__tag--sale
-																																																						{% endif %}">
+																																																																																																																																																																																				    c-immo-card__tag--rent
+																																																																																																																																																																																				{% else %}
+																																																																																																																																																																																				    c-immo-card__tag--sale
+																																																																																																																																																																																				{% endif %}">
 								<p>For
 									{{house.state}}</p>
 							</div>
