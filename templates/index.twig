@@ -75,10 +75,10 @@
 							src={{house.cover.one().url()}} alt="" class="c-immo-card__img">
 							<!-- todo: Zorg dat de kleur veranderd dmv c-immo-card__tag--rent toe te passen wanneer iets for rent staat  -->
 							<div class="c-immo-card__tag {% if status == 'rent' %}
-																																													    c-immo-card__tag--rent
-																																													{% else %}
-																																													    c-immo-card__tag--sale
-																																													{% endif %}">
+																																																																																	    c-immo-card__tag--rent
+																																																																																	{% else %}
+																																																																																	    c-immo-card__tag--sale
+																																																																																	{% endif %}">
 								<p>For
 									{{house.state}}</p>
 							</div>
@@ -137,246 +137,156 @@
 
 	<!-- locations -->
 	<div class="container c-section">
-		<h2 class="c-section__title">Locations</h2>
-		<p class="c-section__subtitle">Already found your ideal location?</p>
+		{% set allLocations = craft.entries.section('locations').level(1).one() %}
+		<h2 class="c-section__title">{{ allLocations.title }}</h2>
+		<p class="c-section__subtitle">{{ allLocations.subtext }}</p>
 
 
-		<div
-			class="row justify-content-center c-section__content c-locations text-center">
-			<!-- todo: plak hier de categories vanuit templates/categories/index.twig -->
-			<div class="col-12 col-sm-3 col-lg-2">
-				<ul class="c-locations__list">
-					<li class=" c-locations__list-item pb-2">
-						<a class="c-locations__link " href="#">
-							Gent
-						</a>
-					</li>
-					<li class=" c-locations__list-item pb-2">
+		<div class="row justify-content-center c-section__content c-locations text-center">
+			{% set regions = allLocations.children.all() %}
+			{% for region in regions %}
+				<div class="col-12 col-sm-3 col-lg-2">
+					<ul class="c-locations__list">
+						<h3>{{ region.title }}</h3>
+						{% set cities = region.children.all() %}
+						{% for city in cities %}
+							<li class=" c-locations__list-item pb-2">
 
-						<a class="c-locations__link " href="#">
-							Kortrijk
-						</a>
-					</li>
-					<li class="c-locations__list-item pb-2">
-						<a class="c-locations__link " href="#">
-							Brussel
-						</a>
-					</li>
-					<li class="c-locations__list-item pb-2">
+								{{ city.title }}
 
-						<a class="c-locations__link " href="#">
-							Lokeren
-						</a>
-					</li>
-				</ul>
-			</div>
-			<div class="col-12 col-sm-3 col-lg-2">
-				<ul class="c-locations__list">
-					<li class="c-locations__list-item pb-2">
-						<a class="c-locations__link " href="#">
-							Antwerpen
-						</a>
-					</li>
-					<li class="c-locations__list-item pb-2">
-
-						<a class="c-locations__link " href="#">
-							Gent
-						</a>
-					</li>
-					<li class="c-locations__list-item pb-2">
-						<a class="c-locations__link " href="#">
-							Gent
-						</a>
-					</li>
-					<li class="c-locations__list-item pb-2">
-
-						<a class="c-locations__link " href="#">
-							Gent
-						</a>
-					</li>
-				</ul>
-			</div>
-			<div class="u-hidden col-sm-3 col-lg-2">
-				<ul class="c-locations__list">
-					<li class="c-locations__list-item pb-2">
-						<a class="c-locations__link " href="#">
-							Gent
-						</a>
-					</li>
-					<li class="c-locations__list-item pb-2">
-
-						<a class="c-locations__link " href="#">
-							Gent
-						</a>
-					</li>
-					<li class="c-locations__list-item pb-2">
-						<a class="c-locations__link " href="#">
-							Gent
-						</a>
-					</li>
-					<li class="c-locations__list-item pb-2">
-
-						<a class="c-locations__link " href="#">
-							Gent
-						</a>
-					</li>
-				</ul>
-			</div>
-			<div class="u-hidden col-sm-3 col-lg-2">
-				<ul class="c-locations__list">
-					<li class="c-locations__list-item pb-2">
-						<a class="c-locations__link " href="#">
-							Gent
-						</a>
-					</li>
-					<li class="c-locations__list-item pb-2">
-
-						<a class="c-locations__link " href="#">
-							Gent
-						</a>
-					</li>
-					<li class="c-locations__list-item pb-2">
-						<a class="c-locations__link " href="#">
-							Gent
-						</a>
-					</li>
-					<li class="c-locations__list-item pb-2">
-
-						<a class="c-locations__link " href="#">
-							Gent
-						</a>
-					</li>
-				</ul>
-			</div>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+			{% endfor %}
 
 		</div>
 
-	</div>
 
-	<!-- reviews -->
-	<div class="container c-section c-section--alternate">
-		<h2 class="c-section__title">What our customers say about us</h2>
-		<p class="c-section__subtitle">Need a little extra motivation?</p>
-		<div
-			class="row g-3 justify-content-center">
-			<!-- review card -->
-			<div class="col-12 col-sm-4 col-md-3">
-				<div class="c-review-card">
-					<div class="c-review-card__info">
-						<div>
-							<h4 class="c-review-card__title ">Cameron Williamson</h4>
-							<p>Gent</p>
+		<!-- reviews -->
+		<div class="container c-section c-section--alternate">
+			<h2 class="c-section__title">What our customers say about us</h2>
+			<p class="c-section__subtitle">Need a little extra motivation?</p>
+			<div
+				class="row g-3 justify-content-center">
+				<!-- review card -->
+				<div class="col-12 col-sm-4 col-md-3">
+					<div class="c-review-card">
+						<div class="c-review-card__info">
+							<div>
+								<h4 class="c-review-card__title ">Cameron Williamson</h4>
+								<p>Gent</p>
+							</div>
+							<img src="{{url('img/icons/quote.svg')}}" alt="" class="c-review-card__img">
 						</div>
-						<img src="{{url('img/icons/quote.svg')}}" alt="" class="c-review-card__img">
-					</div>
-					<p>
-						Searches for multiplexes, property comparisons,
-																																																																																																																																																																																																					and the loan estimator. Works great. Lorem
-																																																																																																																																																																																																					ipsum dolor sit amet, consectetur adipiscing elit,
-																																																																																																																																																																																																					sed do eiusmod tempor incididunt ut labore et
-																																																																																																																																																																																																					dores.
-					</p>
+						<p>
+							Searches for multiplexes, property comparisons,
+																																																																																																																																																																																																																															and the loan estimator. Works great. Lorem
+																																																																																																																																																																																																																															ipsum dolor sit amet, consectetur adipiscing elit,
+																																																																																																																																																																																																																															sed do eiusmod tempor incididunt ut labore et
+																																																																																																																																																																																																																															dores.
+						</p>
 
+					</div>
 				</div>
-			</div>
-			<div class="col-12 col-sm-4 col-md-3">
-				<div class="c-review-card">
-					<div class="c-review-card__info">
-						<div>
-							<h4 class="c-review-card__title ">Cameron Williamson</h4>
-							<p>Gent</p>
+				<div class="col-12 col-sm-4 col-md-3">
+					<div class="c-review-card">
+						<div class="c-review-card__info">
+							<div>
+								<h4 class="c-review-card__title ">Cameron Williamson</h4>
+								<p>Gent</p>
+							</div>
+							<img src="{{url('img/icons/quote.svg')}}" alt="" class="c-review-card__img">
 						</div>
-						<img src="{{url('img/icons/quote.svg')}}" alt="" class="c-review-card__img">
-					</div>
-					<p>
-						Searches for multiplexes, property comparisons,
-																																																																																																																																																																																																					and the loan estimator. Works great. Lorem
-																																																																																																																																																																																																					ipsum dolor sit amet, consectetur adipiscing elit,
-																																																																																																																																																																																																					sed do eiusmod tempor incididunt ut labore et
-																																																																																																																																																																																																					dores.
-					</p>
+						<p>
+							Searches for multiplexes, property comparisons,
+																																																																																																																																																																																																																															and the loan estimator. Works great. Lorem
+																																																																																																																																																																																																																															ipsum dolor sit amet, consectetur adipiscing elit,
+																																																																																																																																																																																																																															sed do eiusmod tempor incididunt ut labore et
+																																																																																																																																																																																																																															dores.
+						</p>
 
+					</div>
 				</div>
-			</div>
-			<div class="col-12 col-sm-4 col-md-3">
-				<div class="c-review-card">
-					<div class="c-review-card__info">
-						<div>
-							<h4 class="c-review-card__title ">Cameron Williamson</h4>
-							<p>Gent</p>
+				<div class="col-12 col-sm-4 col-md-3">
+					<div class="c-review-card">
+						<div class="c-review-card__info">
+							<div>
+								<h4 class="c-review-card__title ">Cameron Williamson</h4>
+								<p>Gent</p>
+							</div>
+							<img src="{{url('img/icons/quote.svg')}}" alt="" class="c-review-card__img">
 						</div>
-						<img src="{{url('img/icons/quote.svg')}}" alt="" class="c-review-card__img">
+						<p>
+							Searches for multiplexes, property comparisons,
+																																																																																																																																																																																																																															and the loan estimator. Works great. Lorem
+																																																																																																																																																																																																																															ipsum dolor sit amet, consectetur adipiscing elit,
+																																																																																																																																																																																																																															sed do eiusmod tempor incididunt ut labore et
+																																																																																																																																																																																																																															dores.
+						</p>
+
 					</div>
-					<p>
-						Searches for multiplexes, property comparisons,
-																																																																																																																																																																																																					and the loan estimator. Works great. Lorem
-																																																																																																																																																																																																					ipsum dolor sit amet, consectetur adipiscing elit,
-																																																																																																																																																																																																					sed do eiusmod tempor incididunt ut labore et
-																																																																																																																																																																																																					dores.
-					</p>
-
 				</div>
-			</div>
 
-		</div>
-	</div>
-
-	<!-- realtors -->
-	<div class="container">
-		<h2 class="pt-5">Meet our team</h2>
-		<p class="text-center">These realtors are ready to help you!</p>
-		<div
-			class="row c-section__content g-3  justify-content-center">
-			<!-- realtor card -->
-			<div class="col-12 col-sm-3 col-lg-2">
-				<div class="c-realtor">
-
-					<img src="{{url('img/RealEstateAgent-one.jpeg')}}" alt="" class="c-realtor__image">
-
-					<div>
-						<h4 class="c-realtor__name">Cameron Williamson</h4>
-						<p>Region East Flanders</p>
-					</div>
-
-				</div>
-			</div>
-			<!-- realtor card -->
-			<div class="col-12 col-sm-3 col-lg-2">
-				<div class="c-realtor">
-
-					<img src="{{url('img/RealEstateAgent-one.jpeg')}}" alt="" class="c-realtor__image">
-					<div>
-						<h4 class="c-realtor__name">Cameron Williamson</h4>
-						<p>Region East Flanders</p>
-					</div>
-
-				</div>
-			</div>
-			<!-- realtor card -->
-			<div class="col-12 col-sm-3 col-lg-2">
-				<div class="c-realtor">
-
-					<img src="{{url('img/RealEstateAgent-one.jpeg')}}" alt="" class="c-realtor__image">
-					<div>
-						<h4 class="c-realtor__name">Cameron Williamson</h4>
-						<p>Region East Flanders</p>
-					</div>
-
-				</div>
-			</div>
-			<!-- realtor card -->
-			<div class="col-12 col-sm-3 col-lg-2">
-				<div class="c-realtor">
-
-					<img src="{{url('img/RealEstateAgent-one.jpeg')}}" alt="" class="c-realtor__image">
-					<div>
-						<h4 class="c-realtor__name">Cameron Williamson</h4>
-						<p>Region East Flanders</p>
-					</div>
-
-				</div>
 			</div>
 		</div>
-	</div>
 
-{% endblock %}
+		<!-- realtors -->
+		<div class="container">
+			<h2 class="pt-5">Meet our team</h2>
+			<p class="text-center">These realtors are ready to help you!</p>
+			<div
+				class="row c-section__content g-3  justify-content-center">
+				<!-- realtor card -->
+				<div class="col-12 col-sm-3 col-lg-2">
+					<div class="c-realtor">
+
+						<img src="{{url('img/RealEstateAgent-one.jpeg')}}" alt="" class="c-realtor__image">
+
+						<div>
+							<h4 class="c-realtor__name">Cameron Williamson</h4>
+							<p>Region East Flanders</p>
+						</div>
+
+					</div>
+				</div>
+				<!-- realtor card -->
+				<div class="col-12 col-sm-3 col-lg-2">
+					<div class="c-realtor">
+
+						<img src="{{url('img/RealEstateAgent-one.jpeg')}}" alt="" class="c-realtor__image">
+						<div>
+							<h4 class="c-realtor__name">Cameron Williamson</h4>
+							<p>Region East Flanders</p>
+						</div>
+
+					</div>
+				</div>
+				<!-- realtor card -->
+				<div class="col-12 col-sm-3 col-lg-2">
+					<div class="c-realtor">
+
+						<img src="{{url('img/RealEstateAgent-one.jpeg')}}" alt="" class="c-realtor__image">
+						<div>
+							<h4 class="c-realtor__name">Cameron Williamson</h4>
+							<p>Region East Flanders</p>
+						</div>
+
+					</div>
+				</div>
+				<!-- realtor card -->
+				<div class="col-12 col-sm-3 col-lg-2">
+					<div class="c-realtor">
+
+						<img src="{{url('img/RealEstateAgent-one.jpeg')}}" alt="" class="c-realtor__image">
+						<div>
+							<h4 class="c-realtor__name">Cameron Williamson</h4>
+							<p>Region East Flanders</p>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	{% endblock %}

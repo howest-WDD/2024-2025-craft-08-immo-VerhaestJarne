@@ -15,10 +15,10 @@
 	<body>
 		<div class="d-flex flex-column flex-md-row justify-content-between col-10 offset-1 align-items-center p-3 px-md-4  bg-white">
 			<h1 class="my-0 mr-md-auto font-weight-normal ">
-				 <a href="{{url('')}}">
-				<img src="{{ url('img/icons/logo.svg')}}" alt="Just Home logo" class="px-2 pb-2 c-immo-card__symbol">
-				JustHome
-            </a>
+				<a href="{{url('')}}">
+					<img src="{{ url('img/icons/logo.svg')}}" alt="Just Home logo" class="px-2 pb-2 c-immo-card__symbol">
+					JustHome
+				</a>
 			</h1>
 			<nav class="my-2 my-md-0 mr-md-3 nav nav-underline">
 				<a class="px-2  nav-link  text-dark" href="#">Homes</a>
@@ -27,9 +27,7 @@
 			</nav>
 		</div>
 
-{% block main %}
-
-{% endblock %}
+		{% block main %}{% endblock %}
 
 		<!-- footer -->
 		<div class="container-fluid u-background-grey  ">
