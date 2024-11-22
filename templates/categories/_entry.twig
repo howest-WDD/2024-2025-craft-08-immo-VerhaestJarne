@@ -6,21 +6,21 @@
 	<div
 		class="container c-section ">
 		<!-- todo: laad de titel en subtext in via de entry -->
-		<h2 class="c-sectiontitle">{{entry.title}}</h2>
-		<p class="c-sectionsubtitle">{{entry.subtext}}</p>
+		<h2 class="c-section__title">{{entry.title}}</h2>
+		<p class="c-section__subtitle">{{entry.subtext}}</p>
 
 		<div
 			class="row g-4 justify-content-center c-sectioncontent">
 			<!-- category card -->
 			<div
-				class="col-12 col-sm-6 col-lg-4 c-categoriescard">
+				class="col-12 col-sm-6 col-lg-4 c-categories__card">
 				<!-- todo: laad de titel en image in via de entry -->
-				<div class="c-categoriesinfo">
-					<h3 class="c-categoriestitle">{{ entry.title}}</h3>
+				<div class="c-categories__info">
+					<h3 class="c-categories__title">{{ entry.title}}</h3>
 					<p class="">2 properties</p>
 				</div>
-				<div class="c-categoriesimgcontainer">
-					<img src="{{ entry.cover[0].url }}" alt="" class="c-categoriesimg c-categories__img--page">
+				<div class="c-categories__imgcontainer">
+					<img src="{{ entry.cover.one().url()}}" alt="" class="c-categories__img c-categories__img--page">
 				</div>
 			</div>
 
@@ -39,10 +39,10 @@
 							src={{house.cover.one().url()}} alt="" class="c-immo-card__img">
 							<!-- todo: Zorg dat de kleur veranderd dmv c-immo-card__tag--rent toe te passen wanneer iets for rent staat  -->
 							<div class="c-immo-card__tag {% if status == 'rent' %}
-																																																																																																																																																									    c-immo-card__tag--rent
-																																																																																																																																																									{% else %}
-																																																																																																																																																									    c-immo-card__tag--sale
-																																																																																																																																																									{% endif %}">
+																																																																																																																																																																																																						    c-immo-card__tag--rent
+																																																																																																																																																																																																						{% else %}
+																																																																																																																																																																																																						    c-immo-card__tag--sale
+																																																																																																																																																																																																						{% endif %}">
 								<p>For
 									{{house.state}}</p>
 							</div>
@@ -102,118 +102,30 @@
 
 	<!-- locations -->
 	<div class="container c-section">
-		<h2 class="c-section__title">Locations</h2>
-		<p class="c-section__subtitle">Already found your ideal location?</p>
+		{% set allLocations = craft.entries.section('locations').level(1).one() %}
+		<h2 class="c-section__title">{{ allLocations.title }}</h2>
+		<p class="c-section__subtitle">{{ allLocations.subtext }}</p>
+
 
 		<div class="row justify-content-center c-section__content c-locations text-center">
-			<div class="col-12 col-sm-3 col-lg-2">
-				<ul class="c-locations__list">
-					<li class=" c-locations__list-item pb-2">
-						<a class="c-locations__link " href="#">
-							Gent
-						</a>
-					</li>
-					<li class=" c-locations__list-item pb-2">
+			{% set regions = allLocations.children.all() %}
+			{% for region in regions %}
+				<div class="col-12 col-sm-3 col-lg-2">
+					<ul class="c-locations__list">
+						<h3>{{ region.title }}</h3>
+						{% set cities = region.children.all() %}
+						{% for city in cities %}
+							<li class=" c-locations__list-item pb-2">
 
-						<a class="c-locations__link " href="#">
-							Kortrijk
-						</a>
-					</li>
-					<li class="c-locations__list-item pb-2">
-						<a class="c-locations__link " href="#">
-							Brussel
-						</a>
-					</li>
-					<li class="c-locations__list-item pb-2">
+								{{ city.title }}
 
-						<a class="c-locations__link " href="#">
-							Lokeren
-						</a>
-					</li>
-				</ul>
-			</div>
-			<div class="col-12 col-sm-3 col-lg-2">
-				<ul class="c-locations__list">
-					<li class="c-locations__list-item pb-2">
-						<a class="c-locations__link " href="#">
-							Antwerpen
-						</a>
-					</li>
-					<li class="c-locations__list-item pb-2">
-
-						<a class="c-locations__link " href="#">
-							Gent
-						</a>
-					</li>
-					<li class="c-locations__list-item pb-2">
-						<a class="c-locations__link " href="#">
-							Gent
-						</a>
-					</li>
-					<li class="c-locations__list-item pb-2">
-
-						<a class="c-locations__link " href="#">
-							Gent
-						</a>
-					</li>
-				</ul>
-			</div>
-			<div class="u-hidden col-sm-3 col-lg-2">
-				<ul class="c-locations__list">
-					<li class="c-locations__list-item pb-2">
-						<a class="c-locations__link " href="#">
-							Gent
-						</a>
-					</li>
-					<li class="c-locations__list-item pb-2">
-
-						<a class="c-locations__link " href="#">
-							Gent
-						</a>
-					</li>
-					<li class="c-locations__list-item pb-2">
-						<a class="c-locations__link " href="#">
-							Gent
-						</a>
-					</li>
-					<li class="c-locations__list-item pb-2">
-
-						<a class="c-locations__link " href="#">
-							Gent
-						</a>
-					</li>
-				</ul>
-			</div>
-			<div class="u-hidden col-sm-3 col-lg-2">
-				<ul class="c-locations__list">
-					<li class="c-locations__list-item pb-2">
-						<a class="c-locations__link " href="#">
-							Gent
-						</a>
-					</li>
-					<li class="c-locations__list-item pb-2">
-
-						<a class="c-locations__link " href="#">
-							Gent
-						</a>
-					</li>
-					<li class="c-locations__list-item pb-2">
-						<a class="c-locations__link " href="#">
-							Gent
-						</a>
-					</li>
-					<li class="c-locations__list-item pb-2">
-
-						<a class="c-locations__link " href="#">
-							Gent
-						</a>
-					</li>
-				</ul>
-			</div>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+			{% endfor %}
 
 		</div>
 
-	</div>
 
-
-{% endblock %}
+	{% endblock %}
