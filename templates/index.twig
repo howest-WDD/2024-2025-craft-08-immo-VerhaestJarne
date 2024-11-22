@@ -28,51 +28,28 @@
 	<!-- Categories section -->
 
 	<div class="container-fluid c-section ">
-		<div class="c-categories">
-			<h2 class="c-section__title">Featured Categories</h2>
-			<p class="c-section__subtitle">What type of house are you looking for?</p>
-
-			<!-- todo: plak hier de categories vanuit templates/categories/index.twig -->
+		<div
+			class="c-categories">
+			<!-- todo: Roep All Categories op en pas de title en subtitle aan.  -->
+			{% set allCategories = craft.entries.section('categories').level(1).one() %}
+			<h2 class="c-section__title">{{ allCategories.title}}</h2>
+			<p class="c-section__subtitle">{{ allCategories.subtext}}</p>
+			<!-- todo: Roep alle children van All  Categories op en loop ze over de cards. Vul de link, title en image dynamisch toe -->
+			{% set categories = allCategories.children.all() %}
+			<!-- categories -->
 			<div class="row g-3 justify-content-center c-section__content">
-				<a href="#" class="c-categories__card col-12 col-sm-3 col-lg-2">
-					<div class="c-categories__info">
-						<h3 class="c-categories__title">Town House</h3>
-						<p class="">2 properties</p>
-					</div>
-					<div class="c-categories__imgcontainer">
-						<img src="img/town-houses.jpeg" alt="" class="c-categories__img">
-					</div>
-				</a>
-
-				<a href="#" class="col-12 col-sm-3 col-lg-2 c-categories__card">
-					<div class="c-categories__info">
-						<h3 class="c-categories__title">Villa</h3>
-						<p class="">10 properties</p>
-					</div>
-					<div class="c-categories__imgcontainer">
-						<img src="img/modern-villa.jpeg" alt="" class="c-categories__img">
-					</div>
-				</a>
-
-				<a href="#" class="col-12 col-sm-3 col-lg-2 c-categories__card">
-					<div class="c-categories__info">
-						<h3 class="c-categories__title">Apartment</h3>
-						<p class="">3 properties</p>
-					</div>
-					<div class="c-categories__imgcontainer">
-						<img src="img/apartment.jpeg" alt="" class="c-categories__img">
-					</div>
-				</a>
-
-				<a href="#" class="col-12 col-sm-3 col-lg-2 c-categories__card">
-					<div class="c-categories__info">
-						<h3 class="c-categories__title">Office</h3>
-						<p class="">3 properties</p>
-					</div>
-					<div class="c-categories__imgcontainer">
-						<img src="img/office.jpeg" alt="" class="c-categories__img">
-					</div>
-				</a>
+				{% for category in categories %}
+					<!-- category card  -->
+					<a href="{{ category.url }}" class="c-categories__card col-12 col-sm-3 col-lg-2">
+						<div class="c-categories__info">
+							<h3 class="c-categories__title">{{ category.title}}</h3>
+							<p class="">2 properties</p>
+						</div>
+						<div class="c-categories__imgcontainer">
+							<img src="{{category.cover.one().url()}}" alt="" class="c-categories__img">
+						</div>
+					</a>
+				{% endfor %}
 			</div>
 		</div>
 
@@ -98,10 +75,10 @@
 							src={{house.cover.one().url()}} alt="" class="c-immo-card__img">
 							<!-- todo: Zorg dat de kleur veranderd dmv c-immo-card__tag--rent toe te passen wanneer iets for rent staat  -->
 							<div class="c-immo-card__tag {% if status == 'rent' %}
-									    c-immo-card__tag--rent
-									{% else %}
-									    c-immo-card__tag--sale
-									{% endif %}">
+																																													    c-immo-card__tag--rent
+																																													{% else %}
+																																													    c-immo-card__tag--sale
+																																													{% endif %}">
 								<p>For
 									{{house.state}}</p>
 							</div>
@@ -111,7 +88,7 @@
 							<div class="c-immo-card__heading">
 								<h3 class="c-immo-card__title">{{house.title}}</h3>
 								<!-- todo: roep hier het amount op -->
-								<p class="c-immo-card__price">€{{ house.price | money }}</p>
+								<p class="c-immo-card__price">{{ house.price | money }}</p>
 							</div>
 							<div class="c-immo-card__location">
 								<img src="{{url('img/icons/location.svg')}}" alt="">
@@ -294,10 +271,10 @@
 					</div>
 					<p>
 						Searches for multiplexes, property comparisons,
-																																																																																																																																																																													and the loan estimator. Works great. Lorem
-																																																																																																																																																																													ipsum dolor sit amet, consectetur adipiscing elit,
-																																																																																																																																																																													sed do eiusmod tempor incididunt ut labore et
-																																																																																																																																																																													dores.
+																																																																																																																																																																																																					and the loan estimator. Works great. Lorem
+																																																																																																																																																																																																					ipsum dolor sit amet, consectetur adipiscing elit,
+																																																																																																																																																																																																					sed do eiusmod tempor incididunt ut labore et
+																																																																																																																																																																																																					dores.
 					</p>
 
 				</div>
@@ -313,10 +290,10 @@
 					</div>
 					<p>
 						Searches for multiplexes, property comparisons,
-																																																																																																																																																																													and the loan estimator. Works great. Lorem
-																																																																																																																																																																													ipsum dolor sit amet, consectetur adipiscing elit,
-																																																																																																																																																																													sed do eiusmod tempor incididunt ut labore et
-																																																																																																																																																																													dores.
+																																																																																																																																																																																																					and the loan estimator. Works great. Lorem
+																																																																																																																																																																																																					ipsum dolor sit amet, consectetur adipiscing elit,
+																																																																																																																																																																																																					sed do eiusmod tempor incididunt ut labore et
+																																																																																																																																																																																																					dores.
 					</p>
 
 				</div>
@@ -332,10 +309,10 @@
 					</div>
 					<p>
 						Searches for multiplexes, property comparisons,
-																																																																																																																																																																													and the loan estimator. Works great. Lorem
-																																																																																																																																																																													ipsum dolor sit amet, consectetur adipiscing elit,
-																																																																																																																																																																													sed do eiusmod tempor incididunt ut labore et
-																																																																																																																																																																													dores.
+																																																																																																																																																																																																					and the loan estimator. Works great. Lorem
+																																																																																																																																																																																																					ipsum dolor sit amet, consectetur adipiscing elit,
+																																																																																																																																																																																																					sed do eiusmod tempor incididunt ut labore et
+																																																																																																																																																																																																					dores.
 					</p>
 
 				</div>
