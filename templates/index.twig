@@ -92,14 +92,16 @@
 					<!-- todo: link de card met de detail page  -->
 					<a href="{{ house.url }}" class="c-immo-card">
 						<div class="c-immo-card__imgcontainer">
-							{% set status = house.status %}
+							{% set status = house.state %}
 
 							<img
 							src={{house.cover.one().url()}} alt="" class="c-immo-card__img">
 							<!-- todo: Zorg dat de kleur veranderd dmv c-immo-card__tag--rent toe te passen wanneer iets for rent staat  -->
-							<div class="c-immo-card__tag {% if status == 'for rent' %}
-																																												                     c-immo-card__tag--rent
-																																												                 {% endif %}">
+							<div class="c-immo-card__tag {% if status == 'rent' %}
+									    c-immo-card__tag--rent
+									{% else %}
+									    c-immo-card__tag--sale
+									{% endif %}">
 								<p>For
 									{{house.state}}</p>
 							</div>
@@ -140,7 +142,7 @@
 									</div>
 									<div class="c-immo-card__icons">
 										<img src="{{url('img/icons/sqf.svg')}}" alt="">
-										<p>{{detail.bedrooms}}
+										<p>{{detail.size}}
 											m²
 										</p>
 									</div>
@@ -292,10 +294,10 @@
 					</div>
 					<p>
 						Searches for multiplexes, property comparisons,
-																																																																																																																																									and the loan estimator. Works great. Lorem
-																																																																																																																																									ipsum dolor sit amet, consectetur adipiscing elit,
-																																																																																																																																									sed do eiusmod tempor incididunt ut labore et
-																																																																																																																																									dores.
+																																																																																																																																																																													and the loan estimator. Works great. Lorem
+																																																																																																																																																																													ipsum dolor sit amet, consectetur adipiscing elit,
+																																																																																																																																																																													sed do eiusmod tempor incididunt ut labore et
+																																																																																																																																																																													dores.
 					</p>
 
 				</div>
@@ -311,10 +313,10 @@
 					</div>
 					<p>
 						Searches for multiplexes, property comparisons,
-																																																																																																																																									and the loan estimator. Works great. Lorem
-																																																																																																																																									ipsum dolor sit amet, consectetur adipiscing elit,
-																																																																																																																																									sed do eiusmod tempor incididunt ut labore et
-																																																																																																																																									dores.
+																																																																																																																																																																													and the loan estimator. Works great. Lorem
+																																																																																																																																																																													ipsum dolor sit amet, consectetur adipiscing elit,
+																																																																																																																																																																													sed do eiusmod tempor incididunt ut labore et
+																																																																																																																																																																													dores.
 					</p>
 
 				</div>
@@ -330,10 +332,10 @@
 					</div>
 					<p>
 						Searches for multiplexes, property comparisons,
-																																																																																																																																									and the loan estimator. Works great. Lorem
-																																																																																																																																									ipsum dolor sit amet, consectetur adipiscing elit,
-																																																																																																																																									sed do eiusmod tempor incididunt ut labore et
-																																																																																																																																									dores.
+																																																																																																																																																																													and the loan estimator. Works great. Lorem
+																																																																																																																																																																													ipsum dolor sit amet, consectetur adipiscing elit,
+																																																																																																																																																																													sed do eiusmod tempor incididunt ut labore et
+																																																																																																																																																																													dores.
 					</p>
 
 				</div>
